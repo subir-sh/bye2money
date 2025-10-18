@@ -12,7 +12,31 @@ export default function TransactionInputBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { date, amount, content, payment, category };
-    // 실제 저장 로직 추가 예정
+    
+    // 스펙에는 없지만, 간단한 예외 처리
+    if (!amount || !content || !payment || !category) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    const newTransaction = {
+      id: Date.now(), // length로 하는 id는 중복 가능성이 있어서, GPT가 추천해줌
+      date,
+      amount,
+      content,
+      payment,
+      category,
+    };
+
+    const existing = JSON.parse(localStorage.getItem("transactions")) || [];
+    const updated = [...existing, newTransaction];
+    localStorage.setItem("transactions", JSON.stringify(updated));
+    
+    // 입력 후 초기화
+    setAmount(0);
+    setContent("");
+    setPayment("");
+    setCategory("");
   };
 
   return (
@@ -63,7 +87,7 @@ export default function TransactionInputBar() {
             <PaymentDropdown value={payment} onSelect={setPayment} />
           </div>
           
-          {/*이거, select 대신 list로 해야하나?*/}
+          {/*이거, select 대신 list로 해야하나? -> 이미 옵션 종류가 다 정해져있음.*/}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">분류</label>
             <select className="font-sans font-semibold text-xs text-neutral-text-weak" value={category} onChange={(e) => setCategory(e.target.value)}>
