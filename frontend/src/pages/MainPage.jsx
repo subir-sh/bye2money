@@ -5,9 +5,9 @@ import Background from "../components/Background.jsx";
 
 export default function MainPage() {
   return (
-    <div className="">
+    <div>
       <Background />
-      <div className="relative w-[1440px] mx-auto">
+      <div className="relative w-[1440px] mx-auto flex justify-center">
         <MainPageHeader />  
         <TransactionInputBar />
         <main>
