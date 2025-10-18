@@ -1,27 +1,37 @@
-import TransactionForm from "./TransactionForm.jsx";
+import { ChevronLeft, ChevronRight, FileText, Calendar, BarChart3 } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="bg-blue-100 py-8 shadow-sm">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-serif font-bold text-blue-900">
-            Wise Wallet
-          </h1>
-          <div className="flex items-center gap-3">
-            <button className="p-2 hover:bg-blue-200 rounded-full">
-              ‹ {/* 화살표는 이미지로 넣을 수도 있는데, 일단 이렇게 처리 */}
+    <header>
+      <div className="relative">
+        <div className="w-[846px] flex justify-between absolute top-[40px] left-[297px]">
+          <div className="w-[132px] gap-[4px] flex justify-start items-center">
+            <h1 className="font-serif font-normal text-[24px] leading-[32px]">
+                Wise Wallet
+            </h1>
+          </div>
+
+          <div className="w-[240px] flex flex-row justify-center items-center gap-[24px]">
+            <button className="w-[32px] h-[32px]">
+              <ChevronLeft size={24} />
             </button>
-            <div className="text-center">
-              <p className="text-sm text-gray-500">2025</p>
-              <p className="text-lg font-semibold">October</p>
+            <div className="flex flex-col items-center gap-[4px]">
+              <p className="font-sans font-light text-[14px]">2025</p>
+              <p className="inline-block leading-none font-sans font-semibold text-[48px]">10</p>
+              <p className="font-sans font-light text-[14px]">October</p>
             </div>
-            <button className="p-2 hover:bg-blue-200 rounded-full">
-              ›
+            <button className="w-[32px] h-[32px]">
+              <ChevronRight size={24} />
             </button>
           </div>
+
+          <div className="w-[132px] flex flex-row justify-end items-center gap-[12px]">
+            <FileText size={24} />
+            <Calendar size={24} />
+            <BarChart3 size={24} />
+          </div>
+
         </div>
-        <TransactionForm />
       </div>
     </header>
   );

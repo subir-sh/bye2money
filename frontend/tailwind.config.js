@@ -12,21 +12,19 @@ export default {
           400: "#000000",
         },
 
-        pastel: {
-          almondFrost: "#A28B78",
-          porsche: "#E39D5D",
-          chenin: "#D7C6AB",
-          caper: "#AACD7E",
-          cruise: "#BCDDF3",
-          onahau: "#C5E0EB",
-          glacier: "#7DB7BF",
-          seagull: "#79B2CA",
-          jordyBlue: "#73A4D0",
-          perano: "#A7B9E9",
-          perfume: "#BDA6E1",
-          lavenderPink: "#F0B0D3",
-          amaranth: "#E9385A",
-          chestnut: "#C04646",
+        colorchip: {
+          "10": "#A28B78",
+          "20": "#E39D5D",
+          "30": "#D7C6AB",
+          "40": "#AACD7E",
+          "50": "#BCDDF3",
+          "60": "#C5E0EB",
+          "70": "#7DB7BF",
+          "80": "#79B2CA",
+          "90": "#73A4D0",
+          "100": "#A7B9E9",
+          "110": "#BDA6E1",
+          "120": "#C04646",
         },
 
         neutral: {
@@ -59,7 +57,7 @@ export default {
 
       fontFamily: {
         sans: ["Pretendard", "system-ui", "sans-serif"],
-        serif: ["ChosunCentennial", "serif"],
+        serif: ["ChosunilboNM", "serif"],
       },
 
       fontSize: {

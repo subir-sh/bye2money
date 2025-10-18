@@ -1,11 +1,12 @@
 import MainPageHeader from "../components/MainPageHeader";
 import TransactionContainer from "../components/TransactionContainer";
+import TransactionInputBar from "../components/TransactionInputBar.jsx";
 
 export default function MainPage() {
   return (
-    <div className="min-h-screen bg-neutral-50 font-sans text-gray-800">
+    <div className="w-[1440px] h-[1024px]">
       <MainPageHeader />
-      <main className="max-w-5xl mx-auto mt-8 px-4 pb-24">
+      <main>
         <TransactionContainer />
       </main>
     </div>
