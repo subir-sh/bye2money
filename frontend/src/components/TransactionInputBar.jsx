@@ -47,10 +47,10 @@ export default function TransactionInputBar() {
           <div className="flex flex-col gap-1 px-4">
             <div className="flex items-center justify-between gap-2">
               <label className="w-40 font-sans font-light text-xs">내용</label>
-              <span className="font-sans font-light text-xs text-neutral-text-weak">{content.length}/32</span>
+              <span className="w-8 text-right font-sans font-light text-xs text-neutral-text-weak">{content.length}/32</span>
             </div>
             <input
-                className="font-sans font-semibold text-xs text-neutral-text-weak"
+                className="w-full font-sans font-semibold text-xs text-neutral-text-weak"
                 type="text"
                 placeholder="입력하세요"
                 value={content}
@@ -58,12 +58,12 @@ export default function TransactionInputBar() {
               />
           </div>
 
-          {/*나중에 추가도 해야하기 때문에, select 대신 list로 넘어가서 모달화 해야할듯?*/}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">결제수단</label>
             <PaymentDropdown value={payment} onSelect={setPayment} />
           </div>
-
+          
+          {/*이거, select 대신 list로 해야하나?*/}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">분류</label>
             <select className="font-sans font-semibold text-xs text-neutral-text-weak" value={category} onChange={(e) => setCategory(e.target.value)}>

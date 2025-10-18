@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useModal } from "../context/ModalContext";
 import PaymentAddModal from "./PaymentAddModal";
 import { ChevronDown } from "lucide-react";
@@ -7,6 +7,23 @@ export default function PaymentDropdown({ value, onSelect }) {
   const { openModal } = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [payments, setPayments] = useState(["현금", "신용카드"]);
+
+  // localStorage에서 불러오기 
+  useEffect(() => {
+    const saved = localStorage.getItem("payments");
+    if (saved) {
+      try {
+        setPayments(JSON.parse(saved));
+      } catch (err) {
+        console.error("Cannot parse payments from localStorage", err);
+      }
+    }
+  }, []);
+
+  // payments 변경 시 localStorage에 저장
+  useEffect(() => {
+    localStorage.setItem("payments", JSON.stringify(payments));
+  }, [payments]);
 
   const handleAdd = (newPayment) => {
     setPayments((prev) => [...prev, newPayment]);
