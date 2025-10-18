@@ -1,20 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TransactionSummaryBar from "./TransactionSummaryBar";
 import TransactionList from "./TransactionList";
 
-export default function TransactionContainer() {
-  const [transactions, setTransactions] = useState([]);
+export default function TransactionContainer({ transactions, onSelect, onDelete, selected }) {
   const [filters, setFilters] = useState({
     income: true,
     expense: true,
   });
-
-  // localStorage에서 데이터 불러오기
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("transactions")) || [];
-    setTransactions(saved);
-  }, []);
-
+  
+  // 데이터 가공
   const totalIncome = transactions
     .filter((t) => t.amount > 0)
     .reduce((sum, t) => sum + t.amount, 0);
@@ -43,7 +37,12 @@ export default function TransactionContainer() {
         onFilterChange={handleFilterChange}
       />
 
-      <TransactionList transactions={filteredTransactions} />
+      <TransactionList
+        transactions={filteredTransactions}
+        onSelect={onSelect}
+        onDelete={onDelete}
+        selected={selected}
+      />
     </section>
   );
 }

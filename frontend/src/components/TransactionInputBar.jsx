@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "./PaymentDropdown";
 
-export default function TransactionInputBar() {
+export default function TransactionInputBar({ onAdd, onEdit, selected }) {
   const [date, setDate] = useState("2025-10-19");
   const [amount, setAmount] = useState(0);
   const [content, setContent] = useState("");
   const [payment, setPayment] = useState("");
   const [category, setCategory] = useState("");
   const [isExpense, setIsExpense] = useState(true);
+
+  // 선택된 항목이 있으면 채워넣기
+  useEffect(() => {
+    if (selected) {
+      setDate(selected.date);
+      setAmount(Math.abs(selected.amount));
+      setContent(selected.content);
+      setPayment(selected.payment);
+      setCategory(selected.category);
+      setIsExpense(selected.amount < 0); // 음수면 지출
+    }
+  }, [selected]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +31,7 @@ export default function TransactionInputBar() {
     }
 
     const newTransaction = {
-      id: Date.now(), // length로 하는 id는 중복 가능성이 있어서, GPT가 추천해줌
+      id: selected?.id || Date.now(), // length로 하는 id는 중복 가능성이 있어서, GPT가 추천해줌
       date,
       amount: isExpense ? -Math.abs(amount) : Math.abs(amount),
       content,
@@ -27,9 +39,8 @@ export default function TransactionInputBar() {
       category,
     };
 
-    const existing = JSON.parse(localStorage.getItem("transactions")) || [];
-    const updated = [...existing, newTransaction];
-    localStorage.setItem("transactions", JSON.stringify(updated));
+    if (selected) onEdit(newTransaction);
+    else onAdd(newTransaction);
     
     // 입력 후 초기화
     setAmount(0);

@@ -36,7 +36,7 @@ export default function PaymentDropdown({ value, onSelect }) {
   };
 
   return (
-    <div>
+    <div className="relative inline-block">
       <div 
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex items-center justify-between cursor-pointer select-none"
@@ -53,7 +53,7 @@ export default function PaymentDropdown({ value, onSelect }) {
       </div>
 
       {isOpen && (
-        <div className="w-34 absolute top-full translate-x-[-16px] border-[0.5px] border-t-0 flex divide-y flex-col items-center">
+        <div className="w-34 absolute top-full mt-5 bg-white translate-x-[-16px] border-[0.5px] border-t-0 flex divide-y flex-col items-center">
           {payments.map((p) => (
             <div 
               key={p}
