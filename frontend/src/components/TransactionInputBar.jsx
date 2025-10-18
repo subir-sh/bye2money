@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, MinusIcon } from "lucide-react";
+import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "./PaymentDropdown";
 
 export default function TransactionInputBar() {
@@ -8,11 +8,10 @@ export default function TransactionInputBar() {
   const [content, setContent] = useState("");
   const [payment, setPayment] = useState("");
   const [category, setCategory] = useState("");
+  const [isExpense, setIsExpense] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { date, amount, content, payment, category };
-    
     // 스펙에는 없지만, 간단한 예외 처리
     if (!amount || !content || !payment || !category) {
       alert("모든 항목을 입력해주세요.");
@@ -22,7 +21,7 @@ export default function TransactionInputBar() {
     const newTransaction = {
       id: Date.now(), // length로 하는 id는 중복 가능성이 있어서, GPT가 추천해줌
       date,
-      amount,
+      amount: isExpense ? -Math.abs(amount) : Math.abs(amount),
       content,
       payment,
       category,
@@ -57,7 +56,17 @@ export default function TransactionInputBar() {
           <div className="flex flex-col gap-1 px-4">
             <label className="font-sans font-light text-xs">금액</label>
             <div className="flex items-center gap-1">
-              <MinusIcon size={16} />
+              <button
+                type="button"
+                onClick={() => setIsExpense((prev) => !prev)}
+                className="flex items-center justify-center w-5 h-5 rounded hover:bg-gray-100"
+              >
+                {isExpense ? (
+                  <MinusIcon size={16}/>
+                ) : (
+                  <PlusIcon size={16}/>
+                )}
+              </button>
               <input
                 className="w-33 text-right font-sans font-semibold text-xs text-neutral-text-weak"
                 type="number"
