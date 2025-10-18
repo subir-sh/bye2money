@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, MinusIcon } from "lucide-react";
+import PaymentDropdown from "./PaymentDropdown";
 
 export default function TransactionInputBar() {
   const [date, setDate] = useState("2025-10-19");
@@ -60,11 +61,7 @@ export default function TransactionInputBar() {
           {/*나중에 추가도 해야하기 때문에, select 대신 list로 넘어가서 모달화 해야할듯?*/}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">결제수단</label>
-            <select className="font-sans font-semibold text-xs text-neutral-text-weak" value={payment} onChange={(e) => setPayment(e.target.value)}>
-              <option value="">선택하세요</option>
-              <option value="cash">현금</option>
-              <option value="card">신용카드</option>
-            </select>
+            <PaymentDropdown value={payment} onSelect={setPayment} />
           </div>
 
           <div className="flex flex-col gap-1 px-4">
