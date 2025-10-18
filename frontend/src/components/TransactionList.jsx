@@ -1,4 +1,5 @@
 import { Trash2 } from "lucide-react";
+import { CATEGORIES } from "../constants/categories";
 
 export default function TransactionList({ transactions, onSelect, onDelete, selected }) {
   // 날짜별 그룹
@@ -55,7 +56,9 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
                   className="group flex justify-between items-center text-left hover:bg-gray-100"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-23 h-14 flex items-center justify-center text-xs">
+                    <div className={`w-23 h-14 flex items-center justify-center text-xs text-black ${
+                        CATEGORIES[t.category] || ""
+                    }`}>
                       {t.category || "기타"}
                     </div>
                     <span>{t.content}</span>

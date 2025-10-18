@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "./PaymentDropdown";
+import { CATEGORIES } from "../constants/categories";
 
 export default function TransactionInputBar({ onAdd, onEdit, selected }) {
   const [date, setDate] = useState("2025-10-19");
@@ -107,14 +108,19 @@ export default function TransactionInputBar({ onAdd, onEdit, selected }) {
             <PaymentDropdown value={payment} onSelect={setPayment} />
           </div>
           
-          {/*이거, select 대신 list로 해야하나? -> 이미 옵션 종류가 다 정해져있음.*/}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">분류</label>
-            <select className="font-sans font-semibold text-xs text-neutral-text-weak" value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value="">선택하세요</option>
-              <option value="food">식비</option>
-              <option value="traffic">교통</option>
-              <option value="culture">문화</option>
+            <select
+              className="font-sans font-semibold text-xs text-neutral-text-weak"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="" disabled hidden>선택하세요</option>
+              {CATEGORIES.map((c) => (
+                <option key={c.name} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
