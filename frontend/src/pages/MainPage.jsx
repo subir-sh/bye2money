@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     <div>
       <Background />
-      <div className="relative w-[1440px] mx-auto flex justify-center">
+      <div className="relative w-[1440px] mx-auto flex flex-col items-center">
         <MainPageHeader />  
         <TransactionInputBar />
         <main>
