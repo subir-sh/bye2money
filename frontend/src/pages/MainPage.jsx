@@ -6,14 +6,11 @@ import Background from "../components/Background.jsx";
 
 export default function MainPage() {
   // 전체 가계부 항목 컨트롤
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(() => {
+    const saved = localStorage.getItem("transactions");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [selected, setSelected] = useState(null);
-
-  // localStorage에서 불러오기 
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("transactions")) || [];
-    setTransactions(saved);
-  }, []);
 
   // 변경될 때마다 localStorage 동기화
   useEffect(() => {
