@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MainPageHeader from "../components/MainPageHeader";
 import TransactionContainer from "../components/TransactionContainer";
 import TransactionInputBar from "../components/TransactionInputBar.jsx";
@@ -12,27 +12,35 @@ export default function MainPage() {
   });
   const [selected, setSelected] = useState(null);
 
-  // 변경될 때마다 localStorage 동기화
-  useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+  const updateStorage = (list) =>
+    localStorage.setItem("transactions", JSON.stringify(list));
 
   // 항목 추가
   const handleAdd = (item) => {
-    setTransactions((prev) => [...prev, { id: Date.now(), ...item }]);
+    setTransactions((prev) => {
+      const next = [...prev, { id: Date.now(), ...item }];
+      updateStorage(next);
+      return next;
+    });
   };
 
   // 항목 수정
   const handleEdit = (updatedItem) => {
-    setTransactions((prev) =>
-      prev.map((t) => (t.id === updatedItem.id ? updatedItem : t))
-    );
+    setTransactions((prev) => {
+      const next = prev.map((t) => (t.id === updatedItem.id ? updatedItem : t));
+      updateStorage(next);
+      return next;
+    });
     setSelected(null);
   };
 
   // 항목 삭제
   const handleDelete = (id) => {
-    setTransactions((prev) => prev.filter((t) => t.id !== id));
+    setTransactions((prev) => {
+      const next = prev.filter((t) => t.id !== id);
+      updateStorage(next);
+      return next;
+    });
   };
 
   return (

@@ -24,7 +24,7 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
 
         return (
           <div key={date} className="py-6">
-            <div className="pb-3 font-serif font-sm text-xs  flex justify-between items-center mb-2">
+            <div className="pb-3 font-serif font-sm text-xs flex justify-between items-center mb-2">
               <span>
                 {(() => {
                   const d = new Date(date);
@@ -65,9 +65,9 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <span>{t.payment}</span>
+                    <span className="w-30">{t.payment}</span>
                     <span
-                      className={`mr-4 ${
+                      className={`w-30 text-right mr-4 ${
                         t.amount > 0 ? "text-brand-text-income" : "text-brand-text-expense"
                       }`}
                     >
