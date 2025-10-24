@@ -36,12 +36,12 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
               </span>
               <span>
                 {totalIncome > 0 && (
-                  <span className="text-brand-text-income">
+                  <span>
                     수입 {totalIncome.toLocaleString()}원
                   </span>
                 )}
                 {totalExpense > 0 && (
-                  <span className="text-brand-text-expense ml-4">
+                  <span className="ml-4">
                     지출 {totalExpense.toLocaleString()}원
                   </span>
                 )}
@@ -49,6 +49,7 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
             </div>
 
             <div className="font-sans font-light text-sm flex flex-col border-t border-b">
+              {/* @TODO: 분리하고 색 매핑에 useMemo 쓰기 */}
               {daily.map((t) => (
                 <button
                   key={t.id}
@@ -57,7 +58,7 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-23 h-14 flex items-center justify-center text-xs text-black ${
-                        CATEGORIES[t.category] || ""
+                        CATEGORIES.find((c) => c.name === t.category)?.color || ""
                     }`}>
                       {t.category || "기타"}
                     </div>
