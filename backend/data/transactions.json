@@ -1,21 +1,5 @@
 [
   {
-    "id": 1760819006140,
-    "date": "2025-10-19",
-    "amount": -123124124,
-    "content": "dafssfsdfasf",
-    "payment": "신용카드",
-    "category": "교통"
-  },
-  {
-    "id": 1760819085636,
-    "date": "2025-10-19",
-    "amount": 5251525124,
-    "content": "bggggggg",
-    "payment": "현금",
-    "category": "기타 수입"
-  },
-  {
     "id": 1760819101911,
     "date": "2025-10-21",
     "amount": 5215513,
@@ -24,19 +8,51 @@
     "category": "생활"
   },
   {
-    "id": 1760851504550,
-    "date": "2025-10-19",
-    "amount": -213410,
-    "content": "dfsadfsadffd",
-    "payment": "신용카드",
-    "category": "식비"
-  },
-  {
     "id": 1761295551962,
     "date": "2025-10-09",
     "amount": -24212354350,
     "content": "ㅁㄴㅇㄹ",
     "payment": "야야야야야야야",
     "category": "미분류"
+  },
+  {
+    "id": 1761374664017,
+    "date": "2025-10-19",
+    "amount": -12351512523,
+    "content": "hdfhdhdfh6124124",
+    "payment": "신용카드",
+    "category": "쇼핑/뷰티"
+  },
+  {
+    "id": 1761374710716,
+    "date": "2025-10-19",
+    "amount": 51355134124,
+    "content": "hhhhhhhhhhh",
+    "payment": "신용카드",
+    "category": "문화/여가"
+  },
+  {
+    "id": 1761375078394,
+    "date": "2025-10-19",
+    "amount": -121525215,
+    "content": "gagsdasddfdsfasg",
+    "payment": "신용카드",
+    "category": "의료/건강"
+  },
+  {
+    "id": 1761375262032,
+    "date": "2025-10-19",
+    "amount": 613632642,
+    "content": "kkkkkkkkkkk",
+    "payment": "1241412",
+    "category": "식비"
+  },
+  {
+    "id": 1761375455420,
+    "date": "2025-10-19",
+    "amount": -515151,
+    "content": "kkksfdsgagdgasg",
+    "payment": "wrqrqwrrqwr",
+    "category": "교통"
   }
 ]

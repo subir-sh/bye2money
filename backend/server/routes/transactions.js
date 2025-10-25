@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   try {
     const data = readData();
-    const newTx = { id: Date.now(), ...req.body };
+    const newTx = req.body;
     data.push(newTx);
     writeData(data);
     res.status(201).json(newTx);

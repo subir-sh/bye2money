@@ -105,7 +105,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected }) {
 
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">결제수단</label>
-            <PaymentDropdown value={payment} onSelect={setPayment} />
+            <PaymentDropdown payment={payment} onSelect={setPayment} />
           </div>
           
           <div className="flex flex-col gap-1 px-4">

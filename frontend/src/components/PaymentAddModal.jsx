@@ -6,7 +6,7 @@ export default function PaymentAddModal({ onAdd }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
-    if (!value.trim()) return;
+    if (!value.trim()) return; // 공백 방지
     closeModal();
     onAdd(value.trim());
   };
