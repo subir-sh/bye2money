@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useModal } from "../context/ModalContext";
+import { useModal } from "../../../../shared/context/ModalContext";
 import PaymentAddModal from "./PaymentAddModal";
 import { ChevronDown } from "lucide-react";
-import { getPayments, addPayment, deletePayment } from "../api/payments";
+import { getPayments, addPayment, deletePayment } from "../../../../shared/api/payments";
 
 export default function PaymentDropdown({ payment, onSelect }) {
   const { openModal } = useModal();

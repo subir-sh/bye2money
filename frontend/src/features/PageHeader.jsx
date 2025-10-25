@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, FileText, Calendar, BarChart2 } from "lucide-react";
 
-export default function Header() {
+export default function PageHeader() {
   return (
     <header>
       <div className="w-[846px] flex justify-between absolute top-8 left-[297px]">

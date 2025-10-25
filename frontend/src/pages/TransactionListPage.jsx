@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import MainPageHeader from "../components/MainPageHeader";
-import TransactionContainer from "../components/TransactionContainer";
-import TransactionInputBar from "../components/TransactionInputBar.jsx";
+import PageHeader from "../features/PageHeader.jsx";
+import TransactionContainer from "../features/TransactionListPage/components/transaction/TransactionContainer.jsx";
+import TransactionInputBar from "../features/TransactionListPage/components/transaction/TransactionInputBar.jsx";
 import {
   getTransactions,
   addTransaction,
   updateTransaction,
   deleteTransaction,
-} from "../api/transactions";
+} from "../shared/api/transactions.js";
 
-export default function MainPage() {
+export default function TransactionListPage() {
   // 전체 가계부 항목 컨트롤
   const [transactions, setTransactions] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -60,7 +60,7 @@ export default function MainPage() {
       {/* Background: 원래는 메인 페이지의 모든 구성 요소를 컴포넌트화하는 게 맞지 않나 하는 생각이었는데, 정적이어서 굳이 그럴 필요 없는 것 같습니다*/}
       <div className="w-full h-50 bg-pastel-jordyBlue absolute top-0" />
       <div className="relative w-[1440px] mx-auto flex flex-col items-center">
-        <MainPageHeader />
+        <PageHeader />
         <TransactionInputBar
           onAdd={handleAdd}
           onEdit={handleEdit}

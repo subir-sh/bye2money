@@ -1,5 +1,5 @@
 import { Trash2 } from "lucide-react";
-import { CATEGORIES } from "../constants/categories";
+import { CATEGORIES } from "../../categories";
 
 export default function TransactionList({ transactions, onSelect, onDelete, selected }) {
   // 날짜별 그룹

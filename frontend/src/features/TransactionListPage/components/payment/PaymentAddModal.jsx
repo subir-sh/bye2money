@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useModal } from "../context/ModalContext";
+import { useModal } from "../../../../shared/context/ModalContext";
 
 export default function PaymentAddModal({ onAdd }) {
   const { closeModal } = useModal();
