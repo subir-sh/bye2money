@@ -11,6 +11,8 @@ export default function MainPage() {
   });
   const [selected, setSelected] = useState(null);
 
+  // @TODO: ID는 백엔드에서 추가해줌 >> 반영!!
+
   const updateStorage = (list) =>
     localStorage.setItem("transactions", JSON.stringify(list));
 

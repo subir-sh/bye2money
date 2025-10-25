@@ -25,7 +25,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 스펙에는 없지만, 간단한 예외 처리
+    // 간단한 예외 처리
     if (!amount || !content || !payment || !category) {
       alert("모든 항목을 입력해주세요.");
       return;
