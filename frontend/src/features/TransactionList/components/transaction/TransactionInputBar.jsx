@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "../payment/PaymentDropdown";
-import { CATEGORIES } from "../../categories";
+import { CATEGORIES } from "../../categories.constants";
 
 export default function TransactionInputBar({ onAdd, onEdit, selected }) {
   const [date, setDate] = useState("2025-10-19");

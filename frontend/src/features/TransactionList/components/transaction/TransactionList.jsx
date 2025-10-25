@@ -1,5 +1,4 @@
-import { Trash2 } from "lucide-react";
-import { CATEGORIES } from "../../categories";
+import TransactionItem from "./TransactionItem.jsx";
 
 export default function TransactionList({ transactions, onSelect, onDelete, selected }) {
   // 날짜별 그룹
@@ -49,48 +48,17 @@ export default function TransactionList({ transactions, onSelect, onDelete, sele
             </div>
 
             <div className="font-sans font-light text-sm flex flex-col border-t border-b">
-              {/* @TODO: 분리하고 색 매핑에 useMemo 쓰기 */}
               {daily.map((t) => (
-                <button
+                <TransactionItem
                   key={t.id}
-                  onClick={() => onSelect(t)}
-                  className="group flex justify-between items-center text-left hover:bg-gray-100"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-23 h-14 flex items-center justify-center text-xs text-black ${
-                        CATEGORIES.find((c) => c.name === t.category)?.color || ""
-                    }`}>
-                      {t.category || "기타"}
-                    </div>
-                    <span>{t.content}</span>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <span className="w-30">{t.payment}</span>
-                    <span
-                      className={`w-30 text-right mr-4 ${
-                        t.amount > 0 ? "text-brand-text-income" : "text-brand-text-expense"
-                      }`}
-                    >
-                      {t.amount > 0
-                        ? `+${t.amount.toLocaleString()}`
-                        : t.amount.toLocaleString()}
-                      원
-                    </span>
-                    <Trash2
-                      size={14}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDelete(t.id);
-                      }}
-                      className={`${
-                        selected?.id === t.id ? "block" : "hidden group-hover:block"
-                      } text-danger-text-default opacity-60 hover:opacity-100 cursor-pointer`}
-                      />
-                  </div>
-                </button>
+                  t={t}
+                  selected={selected}
+                  onSelect={onSelect}
+                  onDelete={onDelete}
+                />
               ))}
             </div>
+
           </div>
         );
       })}
