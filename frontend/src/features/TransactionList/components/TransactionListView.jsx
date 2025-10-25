@@ -7,9 +7,8 @@ import {
   deleteTransaction,
 } from "../../../shared/api/transactions.js";
 
-export default function TransactionListView({ transactions, setTransactions }) {
-  // 여기서는 선택하는 항목만 컨트롤
-  const [selected, setSelected] = useState(null);
+export default function TransactionListView({ transactions, setTransactions, refreshTransactions }) {
+  const [selected, setSelected] = useState(null); // Container -> InputBar로 선택되는 항목이 올라가므로 여기서 관리
 
   // 항목 추가
   const handleAdd = async (item) => {
@@ -51,6 +50,7 @@ export default function TransactionListView({ transactions, setTransactions }) {
         onAdd={handleAdd}
         onEdit={handleEdit}
         selected={selected}
+        refreshTransactions={refreshTransactions}
       />
       <TransactionContainer
         transactions={transactions}

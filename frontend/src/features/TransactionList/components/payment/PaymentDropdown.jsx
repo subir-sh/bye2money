@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useModal } from "../../../../shared/context/ModalContext";
 import PaymentAddModal from "./PaymentAddModal";
+import PaymentDeleteModal from "./PaymentDeleteModal";
 import { ChevronDown } from "lucide-react";
 import { getPayments, addPayment, deletePayment } from "../../../../shared/api/payments";
+import { cleanupTransactions } from "../../../../shared/api/transactions";
 
-export default function PaymentDropdown({ payment, onSelect }) {
+export default function PaymentDropdown({ value, onSelect, refreshTransactions }) {
   const { openModal } = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [payments, setPayments] = useState([]);
@@ -27,9 +29,10 @@ export default function PaymentDropdown({ payment, onSelect }) {
 
   const handleDelete = async (item) => {
     try {
+      await cleanupTransactions(item);
       await deletePayment(item);
       setPayments((prev) => prev.filter((p) => p !== item));
-      if (payment === item) onSelect("");
+      refreshTransactions();
     } catch (err) {
       console.error(err);
     }
@@ -42,7 +45,7 @@ export default function PaymentDropdown({ payment, onSelect }) {
         className="flex items-center justify-between cursor-pointer select-none"
       >
         <span className="font-sans font-semibold text-xs text-neutral-text-weak">
-          {payment || "선택하세요"}
+          {value || "선택하세요"}
         </span>
         <ChevronDown
           size={14}
@@ -70,7 +73,7 @@ export default function PaymentDropdown({ payment, onSelect }) {
               </span>
               <button
                 type="button"
-                onClick={() => handleDelete(p)}
+                onClick={() => {openModal(<PaymentDeleteModal value={p} onDelete={handleDelete} />);}}
                 className="font-sans font-light text-xs text-red-500"
               >
                 X

@@ -1,27 +1,20 @@
-import { useState } from "react";
 import { useModal } from "../../../../shared/context/ModalContext";
 
-export default function PaymentAddModal({ onAdd }) {
+export default function PaymentDeleteModal({ value, onDelete }) {
   const { closeModal } = useModal();
-  const [value, setValue] = useState("");
 
   const handleSubmit = () => {
-    if (!value.trim()) return; // 공백 방지
     closeModal();
-    onAdd(value.trim());
+    onDelete(value);
   };
 
   return (
     <div className="w-96 bg-white">
       <div className="w-full h-36 p-8 flex flex-col gap-4 border-[0.5px]">
-        <p className="font-sans font-light text-base">추가하실 결제 수단을 입력해주세요.</p>
-        <input
-          className="w-80 h-10 px-4 bg-gray-50 rounded-md font-sans font-semibold text-xs text-neutral-text-weak"
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="placeholder"
-        />
+        <p className="font-sans font-light text-base">해당 결제 수단을 삭제하시겠습니까?</p>
+        <span className="w-80 h-10 px-4 font-sans font-semibold text-xs text-neutral-text-weak">
+          {value}
+        </span>
       </div>
       <div className="w-full h-14 grid grid-cols-2 font-sans font-semibold text-base">
         <button 
@@ -34,7 +27,7 @@ export default function PaymentAddModal({ onAdd }) {
           className="w-full border-[0.5px]"
           onClick={handleSubmit}
         >
-          추가
+          삭제
         </button>
       </div>
     </div>

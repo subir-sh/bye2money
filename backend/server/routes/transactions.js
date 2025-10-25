@@ -60,4 +60,19 @@ router.delete("/:id", (req, res) => {
   }
 });
 
+// 결제수단 삭제 시, 해당 결제수단 사용 항목 -> ""로 표시
+router.patch("/cleanup-payment/:name", (req, res) => {
+  try {
+    const deletedName = decodeURIComponent(req.params.name);
+    const data = readData();
+    const updated = data.map((t) =>
+      t.payment === deletedName ? { ...t, payment: "" } : t
+    );
+    writeData(updated);
+    res.json({ success: true, cleaned: deletedName });
+  } catch (err) {
+    res.status(500).json({ error: "결제수단 정리 실패", details: err.message });
+  }
+});
+
 export default router;

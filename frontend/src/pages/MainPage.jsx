@@ -8,10 +8,17 @@ export default function MainPage() {
   const [transactions, setTransactions] = useState([]);
 
   // 서버에서 데이터 가져오기
+  const refreshTransactions = async () => {
+    try {
+      const data = await getTransactions();
+      setTransactions(data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   useEffect(() => {
-    getTransactions()
-      .then((data) => setTransactions(data))
-      .catch((err) => console.error(err));
+    refreshTransactions();
   }, []);
 
   // 같은 데이터를 토대로 3개의 다른 방식으로 보여주는 거라, 라우팅을 사용하지 않음
@@ -21,7 +28,7 @@ export default function MainPage() {
       <div className="w-full h-50 bg-pastel-jordyBlue absolute top-0" />
       <div className="relative w-[1440px] mx-auto flex flex-col items-center">
         <PageHeader /> {/* @TODO: View 변경*/}
-        <TransactionListView transactions={transactions} setTransactions={setTransactions} />
+        <TransactionListView transactions={transactions} setTransactions={setTransactions} refreshTransactions={refreshTransactions}/>
       </div>
     </div>
   );

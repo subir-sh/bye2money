@@ -39,7 +39,7 @@ function reducer(state, action) {
   }
 }
 
-export default function TransactionInputBar({ onAdd, onEdit, selected }) {
+export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTransactions }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { date, amount, content, payment, category, isExpense } = state;
 
@@ -84,7 +84,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected }) {
           {/* 일자 */}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-22 font-sans font-light text-xs">일자</label>
-            {/* 사실 이 date 입력 부분은 헤더에서 넘어가는 거고, 여기서는 표시만 되는 것 같은데, 일단 이렇게 구현*/}
+            {/* @TODO: 사실 이 date 입력 부분은 헤더에서 넘어가는 거고, 여기서는 표시만 되는 것 같은데, 일단 이렇게 구현*/}
             <input
               className="font-sans font-semibold text-xs"
               type="date"
@@ -146,7 +146,8 @@ export default function TransactionInputBar({ onAdd, onEdit, selected }) {
           <div className="flex flex-col gap-1 px-4">
             <label className="w-26 font-sans font-light text-xs">결제수단</label>
             <PaymentDropdown 
-              payment={payment} 
+              value={payment} 
+              refreshTransactions={refreshTransactions}
               onSelect={(v) => dispatch({ type: "SET_FIELD", field: "payment", value: v })}
             />
           </div>

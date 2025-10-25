@@ -31,3 +31,11 @@ export async function deleteTransaction(id) {
   if (!res.ok) throw new Error("거래 삭제 실패");
   return res.json();
 }
+
+export async function cleanupTransactions(paymentName) {
+  const res = await fetch(`${BASE_URL}/cleanup-payment/${encodeURIComponent(paymentName)}`, {
+    method: "PATCH",
+  });
+  if (!res.ok) throw new Error("결제수단 정리 실패");
+  return res.json(); 
+}

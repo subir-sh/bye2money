@@ -86,5 +86,29 @@
     "content": "gsdgadgdsgasdgag",
     "payment": "gdsgasgsdg",
     "category": "기타 수입"
+  },
+  {
+    "id": 1761389647517,
+    "date": "2025-10-25",
+    "amount": -41221,
+    "content": "afdsa",
+    "payment": "yay",
+    "category": "생활"
+  },
+  {
+    "id": 1761389906542,
+    "date": "2025-10-25",
+    "amount": -1231420,
+    "content": "1231",
+    "payment": "",
+    "category": "생활"
+  },
+  {
+    "id": 1761391843468,
+    "date": "2025-10-25",
+    "amount": -124,
+    "content": "fdsfasf",
+    "payment": "",
+    "category": "문화/여가"
   }
 ]
