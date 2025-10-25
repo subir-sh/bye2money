@@ -70,5 +70,21 @@
     "content": "ghhhhhhhh",
     "payment": "gdsgasgsdg",
     "category": "용돈"
+  },
+  {
+    "id": 1761383003060,
+    "date": "2025-10-25",
+    "amount": 42141412412,
+    "content": "ㅇㅁㄴㄻㄹㄴㄻㄴㄹㄹ",
+    "payment": "신용카드",
+    "category": "월급"
+  },
+  {
+    "id": 1761383118794,
+    "date": "2025-10-25",
+    "amount": -124124,
+    "content": "gsdgadgdsgasdgag",
+    "payment": "gdsgasgsdg",
+    "category": "기타 수입"
   }
 ]

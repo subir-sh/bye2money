@@ -8,7 +8,7 @@ import {
 } from "../../../shared/api/transactions.js";
 
 export default function TransactionListView({ transactions, setTransactions }) {
-  // 선택하는 항목만 컨트롤
+  // 여기서는 선택하는 항목만 컨트롤
   const [selected, setSelected] = useState(null);
 
   // 항목 추가
