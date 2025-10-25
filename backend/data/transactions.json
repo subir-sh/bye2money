@@ -62,5 +62,13 @@
     "content": "hhhhhhhhh",
     "payment": "666666",
     "category": "월급"
+  },
+  {
+    "id": 1761380192596,
+    "date": "2025-10-21",
+    "amount": -25125155,
+    "content": "ghhhhhhhh",
+    "payment": "gdsgasgsdg",
+    "category": "용돈"
   }
 ]
