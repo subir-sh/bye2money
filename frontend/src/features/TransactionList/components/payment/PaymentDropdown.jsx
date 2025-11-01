@@ -74,7 +74,7 @@ export default function PaymentDropdown({ value, onSelect, refreshTransactions }
               <button
                 type="button"
                 onClick={() => {openModal(<PaymentDeleteModal value={p} onDelete={handleDelete} />);}}
-                className="font-sans font-light text-xs text-red-500"
+                className="font-sans font-light text-xs text-danger-text-default"
               >
                 X
               </button>

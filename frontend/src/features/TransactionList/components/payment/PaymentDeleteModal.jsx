@@ -12,7 +12,7 @@ export default function PaymentDeleteModal({ value, onDelete }) {
     <div className="w-96 bg-white">
       <div className="w-full h-36 p-8 flex flex-col gap-4 border-[0.5px]">
         <p className="font-sans font-light text-base">해당 결제 수단을 삭제하시겠습니까?</p>
-        <span className="w-80 h-10 px-4 font-sans font-semibold text-xs text-neutral-text-weak">
+        <span className="w-80 h-10 px-4 font-sans font-semibold text-xs text-neutral-text-weak bg-grayscale-100 flex items-center rounded-md">
           {value}
         </span>
       </div>
@@ -27,7 +27,7 @@ export default function PaymentDeleteModal({ value, onDelete }) {
           className="w-full border-[0.5px]"
           onClick={handleSubmit}
         >
-          삭제
+          <span className="text-danger-text-default">삭제</span>
         </button>
       </div>
     </div>

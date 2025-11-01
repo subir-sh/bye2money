@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
 import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "../payment/PaymentDropdown";
-import { CATEGORIES } from "../../categories.constants";
+import CategoryDropdown from "../category/CategoryDropdown";
 
 const MAX_CONTENT_LEN = 32; // 내용 글자 수 제한
 const Today = () => new Date().toISOString().split("T")[0]; // YYYY-MM-DD
@@ -19,8 +19,8 @@ function reducer(state, action) {
   switch (action.type) {
     case "SET_FIELD": // State처럼, 특정 값 수정
       return { ...state, [action.field]: action.value };
-    case "TOGGLE_EXPENSE": // 수입 <> 지출 토글
-      return { ...state, isExpense: !state.isExpense };
+    case "TOGGLE_EXPENSE": // 수입 <> 지출 토글 -> 카테고리도 수입/지출에 따라 바뀌므로 초기화
+      return { ...state, isExpense: !state.isExpense, category: "" };
     case "FILL_SELECTED": // 선택된 항목이 있으면 채워넣기
       const s = action.payload;
       return { // selected 안 내용이 null인 건 배제 (애초에 생성될 때 예외 처리됨)
@@ -147,20 +147,11 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
           {/* 분류 */}
           <div className="flex flex-col gap-1 pl-4 pr-2">
             <label className="w-26 font-sans font-light text-xs">분류</label>
-            <select
-              className="font-sans font-semibold text-xs text-neutral-text-weak"
-              value={category}
-              onChange={(e) => 
-                dispatch({ type: "SET_FIELD", field: "category", value: e.target.value })
-              }
-            >
-              <option value="" disabled hidden>선택하세요</option>
-              {CATEGORIES.map((c) => (
-                <option key={c.name} value={c.name}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
+            <CategoryDropdown 
+              value={category} 
+              isExpense={isExpense}
+              onSelect={(v) => dispatch({ type: "SET_FIELD", field: "category", value: v })}
+            />
           </div>
         </div>
 
