@@ -51,6 +51,7 @@ export default function TransactionListView({ transactions, setTransactions, ref
         onAdd={handleAdd}
         onEdit={handleEdit}
         selected={selected}
+        setSelected={setSelected}
         refreshTransactions={refreshTransactions}
       />
       <TransactionContainer

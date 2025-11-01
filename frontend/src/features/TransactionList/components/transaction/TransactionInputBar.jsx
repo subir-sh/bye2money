@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useRef, useReducer } from "react";
 import { Check, MinusIcon, PlusIcon } from "lucide-react";
 import PaymentDropdown from "../payment/PaymentDropdown";
 import CategoryDropdown from "../category/CategoryDropdown";
@@ -39,13 +39,27 @@ function reducer(state, action) {
   }
 }
 
-export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTransactions }) {
+export default function TransactionInputBar({ onAdd, onEdit, selected, setSelected, refreshTransactions }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { date, amount, content, payment, category, isExpense } = state;
+  const barRef = useRef(null); // DOM 영역을 확인하기 위해 ref 사용
 
   // 선택된 항목이 있으면 채워넣기
   useEffect(() => {
-    if (selected) dispatch({ type: "FILL_SELECTED", payload: selected });
+    if (selected) {
+      dispatch({ type: "FILL_SELECTED", payload: selected });
+      
+      // 외부 영역 클릭 시 선택 해제 
+      const handleClickOutside = (e) => {
+        if (!barRef.current?.contains(e.target)) {
+          setSelected(null);
+          dispatch({ type: "RESET" }); 
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
   }, [selected]);
 
   const isFormValid = amount > 0 && content && payment && category;
@@ -69,7 +83,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} ref={barRef}>
       <div className="w-[894px] h-[76px] mt-[176px] border-[0.5px] bg-white flex items-center justify-center">
         <div className="flex items-center divide-x">
           
