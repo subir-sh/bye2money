@@ -1,6 +1,11 @@
 import { ChevronLeft, ChevronRight, FileText, Calendar, BarChart2 } from "lucide-react";
 
-export default function PageHeader() {
+const MONTH_NAMES = [
+  "", "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+export default function PageHeader({year, month, handleYM}) {
   return (
     <header>
       <div className="w-[846px] flex justify-between absolute top-8 left-[297px]">
@@ -11,15 +16,15 @@ export default function PageHeader() {
         </div>
 
         <div className="w-[240px] flex flex-row justify-center items-center gap-6">
-          <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+          <button onClick={() => handleYM(-1)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100">
             <ChevronLeft size={24} />
           </button>
           <div className="flex flex-col items-center gap-1">
-            <p className="font-sans font-light text-sm">2025</p>
-            <p className="inline-block leading-none font-serif text-base">10</p>
-            <p className="font-sans font-light text-sm">October</p>
+            <p className="font-sans font-light text-sm">{year}</p>
+            <p className="inline-block leading-none font-serif text-base">{month}</p>
+            <p className="font-sans font-light text-sm">{MONTH_NAMES[month]}</p>
           </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+          <button onClick={() => handleYM(1)} className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100">
             <ChevronRight size={24} />
           </button>
         </div>
