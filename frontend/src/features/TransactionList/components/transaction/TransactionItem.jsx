@@ -1,7 +1,10 @@
 import { Trash2 } from "lucide-react";
 import { CATEGORIES } from "../../categories.constants";
+import { useModal } from "../../../../shared/context/ModalContext";
+import TransactionDeleteModal from "./TransactionDeleteModal";
 
 export default function TransactionItem({ t, selected, onSelect, onDelete }) {
+  const { openModal } = useModal();
   // 카테고리 색상은 고정되어 있는 건데, 아이템마다 참조하는 게 약간 마음에 안 들기는 하지만, 일단 이렇게 구현
   const color =
     CATEGORIES.find((c) => c.name === t.category)?.color || "";
@@ -37,9 +40,8 @@ export default function TransactionItem({ t, selected, onSelect, onDelete }) {
 
         <Trash2
           size={14}
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(t.id);
+          onClick={() => {
+            openModal(<TransactionDeleteModal transaction={t} onDelete={onDelete} />);
           }}
           className={`${
             selected?.id === t.id

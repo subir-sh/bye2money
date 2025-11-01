@@ -36,6 +36,7 @@ export default function TransactionListView({ transactions, setTransactions, ref
   // 항목 삭제
   const handleDelete = async (id) => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // 1초 지연 구현
       await deleteTransaction(id);
       setTransactions((prev) => prev.filter((t) => t.id !== id));
       if (id == selected.id) setSelected(null);
