@@ -5,7 +5,7 @@ const MONTH_NAMES = [
   "July", "August", "September", "October", "November", "December"
 ];
 
-export default function PageHeader({year, month, handleYM}) {
+export default function PageHeader({year, month, handleYM, view, setView}) {
   return (
     <header>
       <div className="w-[846px] flex justify-between absolute top-8 left-[297px]">
@@ -32,19 +32,25 @@ export default function PageHeader({year, month, handleYM}) {
         <div className="w-[132px] flex flex-row justify-end items-center gap-3">
           <button
             type="button"
-            className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-100"
+            onClick={() => setView("list")}
+            className={`w-10 h-10 flex items-center justify-center rounded-md transition
+              ${view === "list" ? "bg-gray-200" : "hover:bg-gray-100"}`}
           >
             <FileText size={24} />
           </button>
           <button
             type="button"
-            className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-100"
+            onClick={() => setView("calendar")}
+            className={`w-10 h-10 flex items-center justify-center rounded-md transition
+              ${view === "calendar" ? "bg-gray-200" : "hover:bg-gray-100"}`}
           >
             <Calendar size={24} />
           </button>
           <button
             type="button"
-            className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-100"
+            onClick={() => setView("stats")}
+            className={`w-10 h-10 flex items-center justify-center rounded-md transition
+              ${view === "stats" ? "bg-gray-200" : "hover:bg-gray-100"}`}
           >
             <BarChart2 size={24} />
           </button>
