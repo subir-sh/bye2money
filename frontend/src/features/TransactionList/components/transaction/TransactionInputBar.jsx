@@ -23,7 +23,7 @@ function reducer(state, action) {
       return { ...state, isExpense: !state.isExpense };
     case "FILL_SELECTED": // 선택된 항목이 있으면 채워넣기
       const s = action.payload;
-      return { // selected 안 내용이 null인 건 배제 (애초에 생성될 때 예외 처리)
+      return { // selected 안 내용이 null인 건 배제 (애초에 생성될 때 예외 처리됨)
         ...state,
         date: s.date,
         amount: Math.abs(s.amount),
@@ -33,7 +33,7 @@ function reducer(state, action) {
         isExpense: s.amount < 0, // 음수면 지출
       };
     case "RESET":
-      return initialState; // 날짜 바뀌는 건 생각 X...
+      return initialState; // 날짜 바뀌어서 전날 날짜로 되는 건 생각 X...
     default:
       return state;
   }
@@ -48,18 +48,10 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
     if (selected) dispatch({ type: "FILL_SELECTED", payload: selected });
   }, [selected]);
 
+  const isFormValid = amount > 0 && content && payment && category;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // 간단한 예외 처리
-    if (!amount || !content || !payment || !category) {
-      alert("모든 항목을 입력해주세요.");
-      return;
-    }
-    if (content.length > MAX_CONTENT_LEN) {
-      alert(`내용은 ${MAX_CONTENT_LEN}자 이내로 입력해주세요.`);
-      return;
-    }
 
     const newTransaction = {
       id: selected?.id || Date.now(), // transaction.length로 하는 id는 중복 가능성이 있어서, GPT가 추천해줌
@@ -84,7 +76,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
           {/* 일자 */}
           <div className="flex flex-col gap-1 px-4">
             <label className="w-22 font-sans font-light text-xs">일자</label>
-            {/* @TODO: 사실 이 date 입력 부분은 헤더에서 넘어가는 거고, 여기서는 표시만 되는 것 같은데, 일단 이렇게 구현*/}
+            {/* 여기서 placeholder value인 date도, 월 변경되어서 온 거면 그 달의 첫날로 리셋되면 좋긴 할텐데, 일단 이렇게 구현*/}
             <input
               className="font-sans font-semibold text-xs"
               type="date"
@@ -153,7 +145,7 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
           </div>
           
           {/* 분류 */}
-          <div className="flex flex-col gap-1 px-4">
+          <div className="flex flex-col gap-1 pl-4 pr-2">
             <label className="w-26 font-sans font-light text-xs">분류</label>
             <select
               className="font-sans font-semibold text-xs text-neutral-text-weak"
@@ -174,7 +166,11 @@ export default function TransactionInputBar({ onAdd, onEdit, selected, refreshTr
 
         <button
           type="submit"
-          className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-100"
+          disabled={!isFormValid}
+          className={`w-10 h-10 flex items-center justify-center rounded-full transition
+            ${isFormValid
+              ? "bg-black text-white cursor-pointer hover:bg-neutral-800"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
         >
           <Check size={20} />
         </button>

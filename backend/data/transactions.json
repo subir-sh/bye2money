@@ -110,5 +110,37 @@
     "content": "fdsfasf",
     "payment": "",
     "category": "문화/여가"
+  },
+  {
+    "id": 1762004365077,
+    "date": "2025-11-01",
+    "amount": -1,
+    "content": "123",
+    "payment": "현금",
+    "category": "교통"
+  },
+  {
+    "id": 1762004391729,
+    "date": "2025-11-01",
+    "amount": -123,
+    "content": "ㅎㅁㄶㅁㄴㅇㅎ",
+    "payment": "신용카드",
+    "category": "기타 수입"
+  },
+  {
+    "id": 1762004406365,
+    "date": "2025-11-01",
+    "amount": -51512,
+    "content": "ㅎㅇㄴㅀㅇㄹㄶㅇㄴ",
+    "payment": "666666",
+    "category": "월급"
+  },
+  {
+    "id": 1762004422360,
+    "date": "2025-09-10",
+    "amount": -54125,
+    "content": "ㄴㅇㅀㄴㅇㅎ",
+    "payment": "신용카드",
+    "category": "쇼핑/뷰티"
   }
 ]
